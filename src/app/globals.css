@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+
+  --color-fondo: #f6f4ee;
+  --color-tinta: #1f2a24;
+  --color-suave: #5b6660;
+  --color-marca: #15803d;
+  --color-marca-oscuro: #14532d;
+  --color-marca-claro: #dcfce7;
+  --color-ingreso: #15803d;
+  --color-gasto: #dc2626;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-fondo);
+  color: var(--color-tinta);
+  font-size: 17px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tarjeta base */
+@utility tarjeta {
+  @apply rounded-3xl bg-white p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_16px_rgba(20,60,40,0.06)];
+}
+
+/* Campos de formulario grandes y fáciles de tocar */
+@utility campo {
+  @apply block w-full rounded-2xl border-2 border-stone-200 bg-white px-4 py-3 text-lg text-tinta outline-none transition placeholder:text-stone-400 focus:border-marca focus:ring-4 focus:ring-marca/15;
+}
+
+@utility etiqueta {
+  @apply mb-1.5 block text-base font-bold text-tinta;
+}
+
+@utility boton {
+  @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-lg font-bold transition active:scale-[0.98] disabled:opacity-50;
+}
+
+@utility boton-primario {
+  @apply boton bg-marca text-white shadow-sm hover:bg-marca-oscuro;
+}
+
+@utility boton-secundario {
+  @apply boton border-2 border-stone-200 bg-white text-tinta hover:bg-stone-50;
+}
+
+@utility boton-peligro {
+  @apply boton bg-rose-600 text-white hover:bg-rose-700;
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animacion-toast,
+.animacion-panel {
+  animation: subir 0.22s ease-out;
+}
+
+.animacion-fondo {
+  animation: aparecer 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animacion-toast,
+  .animacion-panel,
+  .animacion-fondo {
+    animation: none;
+  }
+}
